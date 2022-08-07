@@ -8,6 +8,14 @@ class myRegister extends StatefulWidget {
 }
 
 class _myRegisterState extends State<myRegister> {
+  //Password Field obscureText  Handler
+  bool _isHidden = true;
+  void _toggleVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,6 +82,7 @@ class _myRegisterState extends State<myRegister> {
                       TextField(
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
+                          prefixIcon: Icon(Icons.email_outlined),
                           filled: true,
                           labelText: 'Email',
                           border: OutlineInputBorder(
@@ -88,6 +97,7 @@ class _myRegisterState extends State<myRegister> {
                       TextField(
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
+                          prefixIcon: Icon(Icons.phone),
                           filled: true,
                           labelText: 'Phone',
                           border: OutlineInputBorder(
@@ -100,9 +110,16 @@ class _myRegisterState extends State<myRegister> {
                       ),
                       SizedBox(height: 30.0),
                       TextField(
-                        obscureText: true,
+                        obscureText: _isHidden,
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            onPressed: _toggleVisibility,
+                            icon: _isHidden
+                                ? Icon(Icons.visibility)
+                                : Icon(Icons.visibility_off),
+                          ),
                           filled: true,
                           labelText: 'Password',
                           border: OutlineInputBorder(

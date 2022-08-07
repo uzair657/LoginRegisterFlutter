@@ -10,7 +10,7 @@ void main() {
       initialRoute: 'login',
       title: 'OMS',
       routes: {
-        'login': (context) => myLogin(),
+        'login': (context) => MyLogin(),
         'register': (context) => myRegister(),
         'forgot': (context) => resetPassword(),
       },

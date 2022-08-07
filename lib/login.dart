@@ -1,14 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class myLogin extends StatefulWidget {
-  const myLogin({Key? key}) : super(key: key);
+class MyLogin extends StatefulWidget {
+  const MyLogin({Key? key}) : super(key: key);
 
   @override
-  _myLoginState createState() => _myLoginState();
+  _MyLoginState createState() => _MyLoginState();
 }
 
-class _myLoginState extends State<myLogin> {
+class _MyLoginState extends State<MyLogin> {
+  //Password Field obscureText  Handler
+  bool _isHidden = true;
+  void _toggleVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -55,6 +62,7 @@ class _myLoginState extends State<myLogin> {
                       TextField(
                         decoration: InputDecoration(
                           labelText: 'Email',
+                          prefixIcon: Icon(Icons.email_outlined),
                           fillColor: Colors.grey.shade100,
                           filled: true,
                           border: OutlineInputBorder(
@@ -68,13 +76,20 @@ class _myLoginState extends State<myLogin> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter the password';
                           } else if (value.length <= 6) {
-                            return 'Password must be greator than 6 digits';
+                            return 'Password must be greater than 6 digits';
                           }
                         },
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           fillColor: Colors.grey.shade100,
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            onPressed: _toggleVisibility,
+                            icon: _isHidden
+                                ? Icon(Icons.visibility)
+                                : Icon(Icons.visibility_off),
+                          ),
                           filled: true,
                           // hintText: 'Password',
                           border: OutlineInputBorder(
