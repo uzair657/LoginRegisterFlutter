@@ -55,6 +55,7 @@ class _resetPasswordState extends State<resetPassword> {
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Email',
+                          prefixIcon: Icon(Icons.email_outlined),
                           fillColor: Colors.grey.shade100,
                           filled: true,
                           // hintText: 'Password',
